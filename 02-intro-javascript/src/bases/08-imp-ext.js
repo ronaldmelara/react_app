@@ -14,7 +14,7 @@ console.log(casa);
 //importante: recordar que en el archivo a importar debe existir la declaración "Export" para que pueda ser usado aca
 console.log(heroes);
 
-const getHeroeById = (id) => {
+export const getHeroeById = (id) => {
     return heroes.find( h => h.id === id);
 
 }
@@ -23,6 +23,6 @@ console.log(getHeroeById(3));
 
 
 // No se puede usar el 'find' porque solo devuelve 1 registro, el filter devuelve de 1 a N
-const getHeroesByOwner = owner => heroes.filter( heroe => heroe.owner === owner)
+export const getHeroesByOwner = owner => heroes.filter( heroe => heroe.owner === owner)
 
 console.log(getHeroesByOwner('DC'));
