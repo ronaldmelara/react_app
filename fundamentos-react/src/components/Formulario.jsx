@@ -1,26 +1,41 @@
 import {  useState } from "react";
+import Swal from 'sweetalert2'
 
-const Controlado = () => {
+const Formulario = () => {
     const [todo, setTodo] = useState({
         title: "Todo Default",
         description: "Description default",
         state: "pendiente",
-        priority: true
+        priority: true,
     });
    
-    const [title, description, state, priority] = todo;
+    const  { title, description, state, priority } = todo;
+
+    //console.log(title, description, state, priority);
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        console.log(title, description, state, priority);
+        if(title.trim() === "" || description.trim() === ""){
+            console.log('entro');
+            return Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Titulo y descripcion es obligatorio'
+            });
+        
+        }
+
+        console.log(title, description, state);
        
     };
 
     const handleChange = (e) => {
         const {name, type, checked, value} = e.target;
         
-        setTodo({ ...todo, [name]: type === 'checkbox' ? checked : [value]});
+        setTodo({ ...todo, 
+            [name]: type === 'checkbox' ? checked : value,
+        });
     };
 
 
@@ -65,4 +80,4 @@ const Controlado = () => {
     )
 }
 
-export default Controlado
+export default Formulario
